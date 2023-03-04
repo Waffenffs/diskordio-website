@@ -167,6 +167,10 @@ footer {
 
 /* ### Register page CSS ### */
 
+.registerWarning {
+  color: crimson;
+}
+
 .registerPage {
   width: 100vw;
   height: 100vh;
@@ -180,7 +184,7 @@ footer {
   overflow-y: hidden;
 }
 
-.register {
+.register, .loginRegister {
   background-color: #2e2f36;
   padding: 20px;
   display: flex;
@@ -217,6 +221,8 @@ footer {
   width: 100%;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  gap: 5px;
   margin-top: 20px;
   margin-bottom: 30px;
 }
@@ -246,5 +252,13 @@ footer {
 .loginFormContainer {
   display: flex;
   justify-content: center;
+}
+
+.loginPage {
   background-color: #404eed;
+  height: 100vh;
+}
+
+.upperTitles {
+  text-align: center;
 }
