@@ -1,0 +1,250 @@
+
+/* ### Landing page CSS ### */
+
+.landingPage {
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  margin: 0;
+  padding: 0;
+}
+
+.landingNav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #404eed;
+  color: white;
+  padding: 0px 20px;
+}
+
+.iconBox, .authBox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.authLink {
+  color: black;
+  text-decoration: none;
+  background-color: white;
+  font-size: 0.9em;
+  font-weight: 400;
+  padding: 10px;
+  width: 12vh;
+  text-align: center;
+  border-radius: 50px;
+  transition: 0.3s;
+}
+
+.authLink:hover {
+  color: #424bea;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.icon {
+  font-size: 2em;
+}
+
+.discordio {
+  font-size: 1.8em;
+  font-weight: 700;
+}
+
+.links {
+  display: flex;
+  gap: 30px;
+  flex-direction: row;
+  font-weight: 700;
+}
+
+.link {
+  cursor: pointer;
+}
+
+.svgContainer {
+  width: 50vh;
+  background-color: white;
+  padding: 10px 0px;
+  border-radius: 50px;
+  transition: 0.3s;
+}
+
+.myArticle {
+  margin-top: 30vh;
+  justify-content: center;
+  display: flex;
+}
+
+.myArticleBox {
+  background-color: #404eed;
+  display: flex;
+  flex-direction: row;
+  padding: 20px 0px;
+  gap: 20px;
+  width: 90vw;
+  padding: 5vw;
+  border-radius: 50px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.myIntroduction {
+  font-size: 3em;
+
+}
+
+.myText {
+  color: white;
+  width: 60vw;
+}
+
+.myPara {
+  font-size: 1.5em;
+  line-height: 6vh;
+}
+
+.mySvgContainer {
+  width: 50vh;
+  z-index: 1;
+  background-color: white;
+  padding: 30px;
+  border-radius: 50px;
+  transition: 0.3s;
+}
+
+.svgContainer:hover, .mySvgContainer:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  transform: translateY(-10px);
+}
+
+.appreciationSvg, .profileSvg {
+  width: 100%;
+}
+
+.landingArticle {
+  display: flex;
+  justify-content: center;
+}
+
+.article {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  max-width: 100%;
+  background-color: #404eed;
+  padding: 0px 20px;
+  padding-top: 8vh;
+  padding-bottom: 8vh;
+  width: 100%;
+  gap: 50px;
+}
+
+.text {
+  color: white;
+  width: 80vh;
+}
+
+.para {
+  font-size: 1.1em;
+  font-weight: 400;
+  line-height: 4vh;
+}
+
+.appreciationBigText {
+  text-align: center;
+  font-size: 3em;
+  font-weight: 700;
+}
+
+footer {
+  background-color: #23272a;
+  color: white;
+  display: flex;
+  justify-content: center;
+  margin-top: 30vh;
+}
+
+/* ### Register page CSS ### */
+
+.registerPage {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-color: #404eed;
+}
+
+.registerPageBox {
+  overflow: auto;
+  overflow-y: hidden;
+}
+
+.register {
+  background-color: #2e2f36;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  border-radius: 10px;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+}
+
+.registerInput {
+  border: solid thin #4f5056;
+  background-color: #292a2f;
+  color: white;
+  width: 28vw;
+  font-size: 1.1em;
+  padding: 10px;
+}
+
+.registerInput:focus {
+  outline: none;
+}
+
+.registerTitle {
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.registerInputTitle {
+  font-size: 0.8em;
+}
+
+.buttonContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.registerButton {
+  width: 100%;
+  color: white;
+  border: none;
+  background-color: #4d57ee;
+  font-size: 1.1em;
+  font-weight: 700;
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.registerButton:hover {
+  filter: brightness(90%)
+}
+
+.registerFooter {
+  background-color: red;
+}
+
+/* ### Login page CSS ### */
+
+.loginFormContainer {
+  display: flex;
+  justify-content: center;
+  background-color: #404eed;
+}
