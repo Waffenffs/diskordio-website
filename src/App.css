@@ -262,3 +262,36 @@ footer {
 .upperTitles {
   text-align: center;
 }
+
+/* ### Diskordio page CSS ### */
+
+.content {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: row;
+}
+
+.server-list-nav {
+  background-color: #1c1b29;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  gap: 20px;
+  max-width: 8%;
+  min-width: 8%;
+}
+
+.server-image-container {
+  width: 11vh;
+  height: 11vh;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 40%;
+}
+
+.server-image-container:hover {
+  transform: translateY(-8px);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}

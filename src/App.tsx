@@ -20,8 +20,6 @@ export const auth = getAuth(app)
 // initialize firestore
 export const db = getFirestore(app)
 
-// after logging in, login redirects to home page.
-// onauthstatechange watches for changes, and because user logged in, we redirect user to diskordio page (main)
 
 export default function App() {
   const navigate = useNavigate()
@@ -50,7 +48,7 @@ export default function App() {
       <Route path='/' element={ <LandingPage /> } />
       <Route path='/login' element={ <LoginPage auth={auth} db={db} /> } />
       <Route path='/register' element={ <RegisterPage auth={auth} db={db} /> } />
-      <Route path='/main' element={ <Diskordio user={user} /> }/>
+      <Route path='/main' element={ <Diskordio user={user} db={db} /> }/>
     </Routes>
     </>
   )
