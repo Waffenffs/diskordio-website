@@ -263,7 +263,7 @@ footer {
   text-align: center;
 }
 
-/* ### Diskordio page CSS ### */
+/* ### ServerList page CSS ### */
 
 .content {
   width: 100vw;
@@ -294,4 +294,35 @@ footer {
 .server-image-container:hover {
   transform: translateY(-8px);
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+/* ### ChannelsList page CSS ### */
+
+.channels-list {
+  background-color: #292841;
+  max-width: 18%;
+  width: 18%;
+  color: #999b9f;
+  display: flex;
+  justify-content: center;
+}
+
+.channels_container {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  font-weight: 700;
+  font-size: 1.2em;
+  gap: 10px;
+}
+
+.channel_container {
+  padding: 5px 10px;
+  transition: 0.3s;
+  border-radius: 15px;
+}
+
+.channel_container:hover {
+  background-color: #423f71;
+  color: #ffffff;
 }
