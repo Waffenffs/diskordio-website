@@ -300,8 +300,8 @@ footer {
 
 .channels-list {
   background-color: #292841;
-  max-width: 18%;
-  width: 18%;
+  max-width: 16%;
+  width: 16%;
   color: #999b9f;
   display: flex;
   justify-content: center;
@@ -320,9 +320,134 @@ footer {
   padding: 5px 10px;
   transition: 0.3s;
   border-radius: 15px;
+  cursor: pointer;
 }
 
 .channel_container:hover {
   background-color: #423f71;
   color: #ffffff;
+}
+
+/* ### MainContent page CSS ### */
+.main_content {
+  background-color: #312f51;
+  max-width: 60%;
+  width: 60%;
+}
+
+.main_bottom {
+  position: absolute;
+  bottom: 30px;
+  display: flex;
+  justify-content: center;
+  width: 60%;
+  flex-direction: row;
+  gap: 30px;
+}
+
+.main_input {
+  background-color: #423f71;
+  border: none;
+  font-size: 1.3em;
+  padding: 10px;
+  width: 60%;
+  border-radius: 10px;
+  color: white;
+  text-indent: 30px;
+}
+
+.main_input:focus {
+  outline: none;
+}
+
+.main_button {
+  font-size: 1.3em;
+  text-align: center;
+  padding: 0px 20px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  background-color: #423f71;
+  color: #bdbaeb;
+  transition: 0.3s;
+}
+
+.main_button:hover {
+  filter: brightness(90%);
+}
+
+.main_upper {
+  color: white;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.hashtag {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding-left: 30px;
+}
+
+.hashtag > span {
+  font-size: 3em;
+  background-color: #1c1b29;
+  width: 55px;
+  text-align: center;
+  border-radius: 50%;
+  color: #8d8bae;
+}
+
+.left_side > h1 {
+  font-size: 3em;
+  font-weight: 700;
+}
+
+.left_side > h3 {
+  font-weight: 1.3em;
+  color: #999b9f;
+  font-weight: 400;
+  margin-top: -20px;
+}
+
+.message_container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding-left: 30px;
+  gap: 30px;
+}
+
+.message {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.main_image {
+  width: 100%;
+  border-radius: 30%;
+}
+
+.image_container {
+  width: 50px;
+  border-radius: 40%;
+}
+
+.this_message_content {
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+.username {
+  margin-top: -1px;
+}
+
+.message_content {
+  margin-top: -10px;
+  font-size: 1.1em;
+  font-weight: 400;
 }

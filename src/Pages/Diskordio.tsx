@@ -1,11 +1,10 @@
-import { collection, query, where, getDocs, getDoc, doc} from 'firebase/firestore'
+import { collection, query, where, getDocs, getDoc, doc, addDoc, onSnapshot, orderBy, serverTimestamp } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 import ServerList from "../Components/ServerList"
 import ChannelsList from '../Components/ChannelsList'
+import MainContent from '../Components/MainContent'
 
 export default function Diskordio(props: any){
-    // replicate discordUI
-
     interface ServerObject {
         server_name: string
         server_data?: any
@@ -17,11 +16,46 @@ export default function Diskordio(props: any){
         channel_display_content: boolean
     }
 
+    interface MessageStructure {
+        username: string
+        message_content?: string
+        id?: any
+        timestamp?: any
+    }
+
     const [currentUserUsername, setCurrentUserUsername] = useState<string | null>(null)
+    const [profileSrc, setProfileSrc] = useState<string | null>(null)
     const [serverIds, setServerIds] = useState<Array<string>>([]);
     const [currentServers, setCurrentServers] = useState<Array<ServerObject>>([]);
     const [channels, setChannels] = useState<Array<Channel>>([]);
     const [fixedChannels, setFixedChannels] = useState<Array<Channel>>([]);
+    const [channelMessages, setChannelMessages] = useState<Array<any>>([]);
+    const [currentChannel, setCurrentChannel] = useState<any>(null);
+    const [currentServer, setCurrentServer] = useState<any>(null);
+
+    useEffect(() => {
+        if(currentChannel !== null){
+            // TO DO:
+            // organize message lists. latest message will always be at the bottom of the shit.
+            const q = query(collection(props.db, `servers/${currentServer}/channels/${currentChannel}/messages`), orderBy('timestamp'))
+
+            const unsubscribe = onSnapshot(q, (querySnapshot) => {
+                let this_channel_messages = new Array<MessageStructure>();
+
+                querySnapshot.forEach((doc) => {
+                    const this_message: MessageStructure = {
+                        username: props.user.email,
+                        message_content: doc.data().message_content,
+                        timestamp: doc.data().timestamp.toDate(),
+                    }
+                    
+                    this_channel_messages.push(this_message)
+                })
+
+                setChannelMessages(this_channel_messages)
+            })
+        }
+    }, [currentChannel])
 
     // fetch call at initialization
     useEffect(() => {
@@ -31,6 +65,7 @@ export default function Diskordio(props: any){
             const queryUsernameSnapshot = await getDocs(queryUsername)
             queryUsernameSnapshot.forEach((doc) => {
                 setCurrentUserUsername(doc.data().username)
+                setProfileSrc(doc.data().profile_picture)
             })
         }
 
@@ -128,21 +163,81 @@ export default function Diskordio(props: any){
         })
     }, [channels])
 
+    function changeChannelDisplayContent(this_channel_name: string) {
+        let newFixedChannels = new Array<Channel>();
+
+        fixedChannels.map((channel: Channel) => {
+            // if channel_name === this_channel_name, turn that active display content to true
+            // else to false
+            if(channel.channel_name === this_channel_name){
+                newFixedChannels.push({...channel, channel_display_content: true})
+            } else {
+                newFixedChannels.push({...channel, channel_display_content: false})
+            }
+        }) 
+
+        setFixedChannels(newFixedChannels);
+    }
+
+    async function addMessage(message: string) {
+        let currentServer;
+        let currentChannel;
+        currentServers.map((server: ServerObject) => {
+            if(server.server_display){
+                currentServer = server.server_name
+                fixedChannels.map((channel: Channel) => {
+                    if(channel.channel_display_content){
+                        currentChannel = channel.channel_name
+                    }
+                })
+            }
+        })
+
+        const this_message: MessageStructure = {
+            username: props.user.email,
+            message_content: message,
+            timestamp: serverTimestamp(),
+        }
+
+        console.log(currentServer, currentChannel)
+        const docRef = await addDoc(collection(props.db, `servers/${currentServer}/channels/${currentChannel}/messages`), this_message)
+        console.log("document successfully written with ID: ", docRef.id)
+    }
+
+    // determine what servers and channels are active
+    useEffect(() => {
+        // check if fixedChannels is not empty
+        if(fixedChannels.length > 0){
+            currentServers.map((server: ServerObject) => {
+                if(server.server_display){
+                    setCurrentServer(server.server_name)
+                    fixedChannels.map((channel: Channel) => {
+                        if(channel.channel_display_content){
+                            setCurrentChannel(channel.channel_name)
+                        }
+                    })
+                }
+            })
+        }
+    }, [fixedChannels])
+
     // TO DO:
     // let's focus first on creating a server UI.
     // create three columns, so we have four. (serverlist, channels, maincolumn, userscolumn)
-    
-    // TO DO (channels):
-    // pass a function that will turn a channel's channel_display_content to true once clicked
-    // reminder: the foremost channel's channel_display_content is always true
 
-    // TO DO (maincolumn):
-    // display content of channels that are active.
+    // TO DO TOMORROW/TODAY (March 8, 2023):
+    // Work on the users column.
+    // Ideas: Get users from server's users collection and display them on a row.
 
     return(
         <main className='content'>
-            {currentServers.length > 0 && <ServerList serverList={currentServers} />}
-            {currentServers.length > 0 && <ChannelsList channelsList={fixedChannels} /> }
+            {currentServers.length > 0 && 
+                <>
+                    <ServerList serverList={currentServers} />
+                    <ChannelsList channelsList={fixedChannels} changeChannelDisplayContent={changeChannelDisplayContent} />
+                    <MainContent channelMessages={channelMessages} currentChannel={currentChannel} addMessage={addMessage} username={currentUserUsername} picture={profileSrc} />
+                </>
+            }
         </main>
     )
 }

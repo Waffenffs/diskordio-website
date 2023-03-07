@@ -1,6 +1,3 @@
-import { getDocs, collection } from 'firebase/firestore'
-import { useState, useEffect } from 'react'
-
 export default function ChannelsList(props: any) {
     interface Channel {
         channel_name?: string
@@ -12,7 +9,7 @@ export default function ChannelsList(props: any) {
             <div className="channels_container">
                 {props.channelsList.map((channel: Channel) => {
                     return(
-                        <div className='channel_container'>
+                        <div className='channel_container' onClick={() => props.changeChannelDisplayContent(channel.channel_name)}>
                             <span className='channel_name'># {channel.channel_name}</span>
                         </div>
                     )
