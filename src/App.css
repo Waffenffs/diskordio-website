@@ -181,7 +181,7 @@ footer {
 
 .registerPageBox {
   overflow: auto;
-  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 .register, .loginRegister {
@@ -256,11 +256,21 @@ footer {
 
 .loginPage {
   background-color: #404eed;
+  width: 100vw;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: auto ;
 }
 
 .upperTitles {
   text-align: center;
+}
+
+@media screen and (max-width: 1300px) {
+  .loginPage {
+    height: 100%;
+  }
 }
 
 /* ### ServerList page CSS ### */

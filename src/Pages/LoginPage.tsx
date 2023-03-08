@@ -28,7 +28,6 @@ export default function LoginPage(props: any) {
     return(
         <div className="loginPage">
             <Nav />
-
             <div className="loginFormContainer">
                 <form className="loginRegister" onSubmit={handleSubmit}>
                     <div className="upperTitles">

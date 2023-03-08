@@ -3,13 +3,22 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { doc, setDoc } from 'firebase/firestore'
+import { useDropzone } from 'react-dropzone'
 import '../App.css'
 
 export default function RegisterPage(props: any) {
+    /* 
+        TO-DO:
+        1. Add an option for users to customize their profile pictures by upload
+            - Use React-Dropzone for this
+        
+    */
+
     const [registerEmail, setRegisterEmail] = useState<string>('')
     const [registerUsername, setRegisterUsername] = useState<string>('')
     const [registerPassword, setRegisterPassword] = useState<string>('')
     const [showWarning, setShowWarning] = useState<boolean>(false)
+    const [pictureExists, setPictureExists] = useState<boolean>(false);
 
     function handleSubmit(e: any) {
         e.preventDefault()

@@ -10,7 +10,9 @@ export default function Nav() {
         </div>
         <div className="links">
             <Link to='/' style={{ textDecoration: 'none', color: 'inherit'}}><span className='link'>About</span></Link>
-            <span className='link'>Github</span>
+            <span className='link'>
+                <a href='https://github.com/Waffenffs/diskordio-website' target='_blank' style={{ textDecoration: 'none', color: 'inherit'}}>Github</a>
+            </span>
         </div>
         <div className="authBox">
             <Link to='/register' className='authLink'>Register</Link>
