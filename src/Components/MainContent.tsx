@@ -2,10 +2,6 @@ import { useState } from "react"
 import {BiSend} from 'react-icons/bi'
 
 export default function MainContent(props: any) {
-    // TO DO: get the appropriate profile picture
-    // 
-    // ADD STYLING
-
     const [inputField, setInputField] = useState<string>('')
 
     console.log(props.channelMessages)

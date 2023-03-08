@@ -56,17 +56,12 @@ export default function Diskordio(props: any){
 
     useEffect(() => {
         if(currentChannel !== null){
-            // TO DO:
-            // organize message lists. latest message will always be at the bottom of the shit.
             const q = query(collection(props.db, `servers/${currentServer}/channels/${currentChannel}/messages`), orderBy('timestamp'))
 
             const unsubscribe = onSnapshot(q, (querySnapshot) => {
                 let this_channel_messages = new Array<MessageStructure>();
 
-                querySnapshot.forEach((doc) => {
-                    // make a query to get the stuff
-                    // servers/users/where doc.data().username === 
-                    
+                querySnapshot.forEach((doc) => {  
                     this_channel_messages.push(doc.data())
                 })
 
@@ -144,10 +139,6 @@ export default function Diskordio(props: any){
     useEffect(() => {
         // check if currentServers has data/not empty
         if(currentServers.length > 0){
-            // loop through currentServers
-            // check if user is active
-                // if active: make a query for its channels
-            // else just don't.
             currentServers.map((server: ServerObject, index) => {
                 if(server.server_display){
                     const queryChannels = query(collection(props.db, `servers/${server.server_name}/channels`))
@@ -185,8 +176,6 @@ export default function Diskordio(props: any){
         let newFixedChannels = new Array<Channel>();
 
         fixedChannels.map((channel: Channel) => {
-            // if channel_name === this_channel_name, turn that active display content to true
-            // else to false
             if(channel.channel_name === this_channel_name){
                 newFixedChannels.push({...channel, channel_display_content: true})
             } else {
@@ -197,8 +186,6 @@ export default function Diskordio(props: any){
         setFixedChannels(newFixedChannels);
     }
 
-    // create an useeffect function that will get the current' users username
-    // servers/this_server/user/where email === props.user.email
     useEffect(() => {
         if(currentServer){
             const docRef = query(collection(props.db, `servers/${currentServer}/users`), where("email", "==", props.user.email))
@@ -259,13 +246,6 @@ export default function Diskordio(props: any){
         }
     }, [fixedChannels])
 
-    // TO DO:
-    // let's focus first on creating a server UI.
-    // create three columns, so we have four. (serverlist, channels, maincolumn, userscolumn)
-
-    // TO DO:
-    // check if messaging works by adding another account.
-
     useEffect(() => {
         // check if currentServer has data
         if(currentServers.length > 0){
@@ -282,22 +262,6 @@ export default function Diskordio(props: any){
                 setServerUsers(users);
             })
         }
-
-/*         if(currentServers.length > 0){
-            const queryUsers = query(collection(props.db, `servers/${currentServer}/users`))
-            
-            const asyncQueryUsers = async () => {
-                const queryUsersSnapshot = await getDocs(queryUsers);
-                queryUsersSnapshot.forEach((doc) => {
-                    const userObject: UserData = doc.data();
-
-                    console.log(userObject)
-                })
-            }
-
-            // call the async function
-            asyncQueryUsers();
-        } */
     }, [currentServer])
 
     return(

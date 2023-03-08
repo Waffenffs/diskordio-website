@@ -1,6 +1,4 @@
 export default function ServerList(props: any) {
-    // were going to accept a list of servers
-    // display each server in that list in a column
     interface ServerObject {
         server_name: string,
         server_data?: any
