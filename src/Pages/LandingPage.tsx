@@ -1,7 +1,26 @@
 import Nav from '../Components/Nav'
 import '../App.css'
+import { onAuthStateChanged } from 'firebase/auth'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-export default function LandingPage() {
+export default function LandingPage(props: any) {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        onAuthStateChanged(props.auth, (user) => {
+          if(user){
+    
+            setTimeout(() => {
+              navigate('main')
+            }, 1000);
+          } else {
+            // user is signed out
+          }
+        })
+      }, [])
+
+
     return(
         <div className="landingPage">
             <Nav />

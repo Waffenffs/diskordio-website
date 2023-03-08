@@ -45,7 +45,7 @@ export default function App() {
     <>
     
     <Routes>
-      <Route path='/' element={ <LandingPage /> } />
+      <Route path='/' element={ <LandingPage auth={auth} /> } />
       <Route path='/login' element={ <LoginPage auth={auth} db={db} /> } />
       <Route path='/register' element={ <RegisterPage auth={auth} db={db} /> } />
       <Route path='/main' element={ <Diskordio user={user} db={db} /> }/>
